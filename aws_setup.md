@@ -1,3 +1,13 @@
+# AWS Setup
+
+## Create from neural-style image
+
+```bash
+docker-machine create --driver amazonec2 --amazonec2-instance-type p2.xlarge --amazonec2-ami ami-00f58efbe2355e30c --amazonec2-root-size 50 neural-style
+```
+
+## Create from deep learning base image
+
 ```bash
 # Create instance
 docker-machine create --driver amazonec2 --amazonec2-instance-type p2.xlarge --amazonec2-ami ami-0aaa3a0f6876b748c --amazonec2-root-size 50 deep-learn-base
@@ -62,12 +72,15 @@ luarocks install loadcaffe
 git clone https://github.com/domtriola/neural-style.git
 cd neural-style
 sh models/download_models.sh
+```
 
-# Try it out
+## Try it out
+
+```bash
 th neural_style.lua -style_image examples/inputs/picasso_selfport1907.jpg -content_image examples/inputs/brad_pitt.jpg
 
 # Upload images
-docker-machine scp -r ./<local-image-path> deep-learn-base:/home/ubuntu/neural-style/input/
+docker-machine scp -r ./<local-image-path> <instance-name>:/home/ubuntu/neural-style/input/
 # Retrieve images
-docker-machine scp -r deep-learn-base:/home/ubuntu/neural-style/results/ results/
+docker-machine scp -r <instance-name>:/home/ubuntu/neural-style/results/ results/
 ```
