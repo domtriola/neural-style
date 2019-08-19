@@ -6,6 +6,8 @@
 docker-machine create --driver amazonec2 --amazonec2-instance-type p2.xlarge --amazonec2-ami ami-00f58efbe2355e30c --amazonec2-root-size 50 neural-style
 ```
 
+**NOTE:** if the AMI used above doesn't exist you can create a new one with the steps outlined in the next section.
+
 ## Create from deep learning base image
 
 ```bash
